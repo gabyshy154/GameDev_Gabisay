@@ -1,6 +1,8 @@
 # GameDev_Gabisay
 
 Week 1 : Simple Scene with a moving node [hello-world-project (2D NODE)]
+![Uploading Screenshot 2026-02-20 143159.png…]()
+
 
 Week 2 : Activity 1 (Gameplay Mechanics) [gameplay-mechanics (3D NODE)]
 
