@@ -52,5 +52,5 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 [node name="Level1" parent="." unique_id=1834049109 instance=ExtResource("4_1bvp3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4417, -1.38659, 0)
 
-[node name="Level2" parent="." unique_id=473690009 instance=ExtResource("5_lquwl")]
-transform = Transform3D(-0.0140494695, 0, 0.9999013, 0, 1, 0, -0.9999013, 0, -0.0140494695, -1.8926, -1.221592, -19.955769)
+[node name="Level2" parent="." unique_id=1051068968 instance=ExtResource("5_lquwl")]
+transform = Transform3D(-0.0034208668, 0, 0.99999416, 0, 1, 0, -0.99999416, 0, -0.0034208668, -0.83961105, -2.7405434, -23.143612)
