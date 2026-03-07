@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://ij72l2idljn3"]
 
 [ext_resource type="Script" uid="uid://dqro6bw65t6nm" path="res://mesh_instance_3d.gd" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bvvp2d6l3pu10" path="res://player.tscn" id="2_0xm2m"]
-[ext_resource type="MeshLibrary" uid="uid://lkogtijtiext" path="res://Assets/tiles.tres" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://mo80meowussa" path="res://player_3d.tscn" id="2_h2yge"]
+[ext_resource type="MeshLibrary" uid="uid://k6akhb73u00" path="res://MeshAssets/tiles.tres" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cbr3grkj226dp" path="res://level_1.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cr6q440tsv4j8" path="res://level_2.tscn" id="5_lquwl"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0xm2m"]
 
@@ -15,23 +17,20 @@ size = Vector3(12, 0.2, 12)
 [node name="Main" type="Node3D" unique_id=1378872167]
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1839986487]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -4)
 text = "Hello World!"
+font_size = 300
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Label3D" unique_id=146384046]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9165092, 3.0222826, 0)
 mesh = SubResource("SphereMesh_0xm2m")
 script = ExtResource("1_ig7tw")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2006182922]
-transform = Transform3D(1, 1.00287295e-07, -1.432251e-07, 0, 0.81915206, 0.57357645, 1.7484555e-07, -0.57357645, 0.81915206, 0.15866876, 5.2791023, 10.393813)
-fov = 67.05627
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1637066273]
 transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0)
 
 [node name="Ground" type="StaticBody3D" parent="." unique_id=24904592]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Ground" unique_id=2036999859]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.020870209, -0.012853682, 0)
@@ -40,9 +39,18 @@ mesh = SubResource("BoxMesh_h2yge")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1983747617]
 shape = SubResource("BoxShape3D_1bvp3")
 
-[node name="Player" parent="." unique_id=2117996809 instance=ExtResource("2_0xm2m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3317587, 0.9774295, -0.1860125)
+[node name="SpawnPoint" type="Node3D" parent="." unique_id=1895667620 groups=["spawn_point"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="GridMap" type="GridMap" parent="." unique_id=901270958]
+[node name="Player3D" parent="." unique_id=1114119955 instance=ExtResource("2_h2yge")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="GridMap" type="GridMap" parent="." unique_id=2079086931]
 mesh_library = ExtResource("3_h2yge")
-cell_size = Vector3(1, 0.25, 0.5)
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Level1" parent="." unique_id=1834049109 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.4417, -1.38659, 0)
+
+[node name="Level2" parent="." unique_id=473690009 instance=ExtResource("5_lquwl")]
+transform = Transform3D(-0.0140494695, 0, 0.9999013, 0, 1, 0, -0.9999013, 0, -0.0140494695, -1.8926, -1.221592, -19.955769)

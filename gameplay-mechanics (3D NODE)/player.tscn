@@ -7,6 +7,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
 
 [node name="Player" type="CharacterBody3D" unique_id=2117996809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3317587, 1.9774295, -0.1860125)
 script = ExtResource("1_4flbx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2037961393]
@@ -14,3 +15,9 @@ mesh = SubResource("CapsuleMesh_sh265")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=896048948]
 shape = SubResource("CapsuleShape3D_4flbx")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1140993446]
+transform = Transform3D(1, 0, 0, 0, 0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0, 0, 0)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=1113155928]
