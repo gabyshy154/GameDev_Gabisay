@@ -15,9 +15,14 @@ run/main_scene="uid://brg0cayojetal"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="uid://chhuddo47lygo"
+
 [autoload]
 
 GameState="*uid://dam1522ia7cta"
+AudioManager="*uid://cw3aldl00f14f"
 
 [filesystem]
 

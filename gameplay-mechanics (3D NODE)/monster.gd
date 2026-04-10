@@ -28,9 +28,6 @@ var _dead := false
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 
 func _ready():
-	# Wait 1.5 seconds before activating
-	# This gives main.gd time to move the player to spawn
-	# before the monster starts checking catch distance
 	await get_tree().create_timer(1.5).timeout
 	player = get_tree().get_first_node_in_group("player")
 	nav.path_desired_distance = 0.5
@@ -40,7 +37,6 @@ func _ready():
 	_ready_done = true
 
 func _physics_process(delta: float) -> void:
-	# Don't do anything until _ready fully finished
 	if not _ready_done:
 		return
 
@@ -51,14 +47,12 @@ func _physics_process(delta: float) -> void:
 		player = get_tree().get_first_node_in_group("player")
 		return
 
-	# Fell off — respawn back to placed position
 	if global_position.y < FALL_LIMIT:
 		global_position = spawn_position
 		velocity = Vector3.ZERO
 		is_chasing = false
 		return
 
-	# Detection check
 	var dist = global_position.distance_to(player.global_position)
 	if not is_chasing:
 		if dist < detection_range:
@@ -66,7 +60,6 @@ func _physics_process(delta: float) -> void:
 		elif dist < sight_range and _can_see_player():
 			is_chasing = true
 
-	# Idle — stand still until detected
 	if not is_chasing:
 		if not is_on_floor():
 			velocity.y -= _gravity * delta
@@ -105,7 +98,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0.0, speed)
 		velocity.z = move_toward(velocity.z, 0.0, speed)
 
-	# Stuck detection
 	if is_on_floor():
 		_stuck_timer += delta
 		if global_position.distance_to(_last_position) > STUCK_MIN_MOVE:
@@ -117,7 +109,6 @@ func _physics_process(delta: float) -> void:
 			var jump_vel = sqrt(2.0 * _gravity * jump_target) * 1.1
 			velocity.y = clamp(jump_vel, min_jump_velocity, max_jump_velocity)
 
-	# Vertical logic
 	if is_on_floor():
 		if height_diff > jump_threshold:
 			var jump_vel = sqrt(2.0 * _gravity * (height_diff + 0.4)) * 1.05
@@ -129,10 +120,10 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# Catch check — deferred to avoid physics callback error
 	if dist < catch_distance:
 		_dead = true
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		AudioManager.play_sfx(AudioManager.sfx_death)
 		call_deferred("_trigger_death")
 
 func _trigger_death():

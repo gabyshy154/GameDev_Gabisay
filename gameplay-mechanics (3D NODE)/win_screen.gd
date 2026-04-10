@@ -2,6 +2,10 @@ extends Control
 
 func _ready():
 	print("=== WIN SCREEN LOADED ===")
+	# Play the "landing/finish" sound as a victory chime
+	AudioManager.play_sfx(AudioManager.sfx_land)
+	# Switch music back to menu style
+	AudioManager.play_music(AudioManager.music_menu)
 
 func _on_next_pressed():
 	if GameState.selected_level == "res://level_1.tscn":
@@ -9,9 +13,6 @@ func _on_next_pressed():
 	else:
 		get_tree().change_scene_to_file("res://lobby.tscn")
 		return
-	call_deferred("_go_to_main")
-
-func _go_to_main():
 	get_tree().change_scene_to_file("res://main.tscn")
 
 func _on_lobby_pressed():
