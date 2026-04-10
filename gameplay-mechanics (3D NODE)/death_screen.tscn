@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://c8s31ru3hm1yb"]
+
+[ext_resource type="Script" uid="uid://rmukl40tg6oe" path="res://death_screen.gd" id="1_if853"]
+
+[node name="DeathScreen" type="Control" unique_id=977195295]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_if853")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=851402169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13884273, 0.007079865, 1.2032688e-08, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=783694554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="." unique_id=1437343684]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 146.0
+offset_right = 881.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 64
+text = "YOU DIED"
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="." unique_id=701432527]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 283.0
+offset_right = 635.0
+offset_bottom = 336.0
+theme_override_font_sizes/font_size = 32
+text = "RETRY"
+
+[node name="Button2" type="Button" parent="." unique_id=1767618145]
+layout_mode = 0
+offset_left = 524.0
+offset_top = 393.0
+offset_right = 636.0
+offset_bottom = 446.0
+theme_override_font_sizes/font_size = 32
+text = "LOBBY"
+
+[connection signal="pressed" from="Button" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_lobby_pressed"]

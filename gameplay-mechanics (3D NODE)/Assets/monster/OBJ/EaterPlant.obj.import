@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://d00w8tsxieptx"
+path="res://.godot/imported/EaterPlant.obj-9df86b39d0a59755faca174a9384e841.mesh"
+
+[deps]
+
+files=["res://.godot/imported/EaterPlant.obj-9df86b39d0a59755faca174a9384e841.mesh"]
+
+source_file="res://Assets/monster/OBJ/EaterPlant.obj"
+dest_files=["res://.godot/imported/EaterPlant.obj-9df86b39d0a59755faca174a9384e841.mesh", "res://.godot/imported/EaterPlant.obj-9df86b39d0a59755faca174a9384e841.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

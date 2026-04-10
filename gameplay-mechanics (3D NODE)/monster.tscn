@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dorarr8bchewu"]
+
+[ext_resource type="Script" uid="uid://cq1n7pkhkgol6" path="res://monster.gd" id="1_s3gyj"]
+[ext_resource type="ArrayMesh" uid="uid://c1fv56tqvbydb" path="res://Assets/monster/OBJ/Spider.obj" id="2_mrqeg"]
+[ext_resource type="Texture2D" uid="uid://ccw3xgm2tue5c" path="res://Assets/monster/Textures/Spider01.png" id="3_ga5te"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vr0w3"]
+albedo_texture = ExtResource("3_ga5te")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ga5te"]
+radius = 0.4
+height = 1.8562012
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ga5te"]
+radius = 0.6
+
+[node name="Monster" type="CharacterBody3D" unique_id=569266424]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.056943655, 0.99595356, 0)
+script = ExtResource("1_s3gyj")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=781172010]
+transform = Transform3D(-0.1, 0, -8.742278e-09, 0, 0.1, 0, 8.742278e-09, 0, -0.1, 0, 0, 0)
+mesh = ExtResource("2_mrqeg")
+surface_material_override/0 = SubResource("StandardMaterial3D_vr0w3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1450563615]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.071899414, 0)
+shape = SubResource("CapsuleShape3D_ga5te")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=1869833727]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
+debug_enabled = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1371777361]
+
+[node name="DetectionZone" type="Area3D" parent="." unique_id=936852752]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionZone" unique_id=79789219]
+shape = SubResource("SphereShape3D_ga5te")

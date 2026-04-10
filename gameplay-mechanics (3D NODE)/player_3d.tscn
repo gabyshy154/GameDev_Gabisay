@@ -9,7 +9,7 @@ height = 2.125
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_3swsy"]
 
-[node name="Player3D" type="CharacterBody3D" unique_id=1114119955]
+[node name="Player3D" type="CharacterBody3D" unique_id=1114119955 groups=["player"]]
 script = ExtResource("1_3swsy")
 
 [node name="SophiaSkin" parent="." unique_id=1282184975 instance=ExtResource("1_5wjm4")]

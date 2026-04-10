@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://c7tlm3u6fpbv4"]
+
+[ext_resource type="Script" uid="uid://blwsf8jxxq5ec" path="res://lobby.gd" id="1_ll2xe"]
+
+[node name="Lobby" type="Control" unique_id=1478939623]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ll2xe")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2134506732]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.050980393, 0.101960786, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=516563454]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=227204992]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 141.0
+offset_right = 755.0
+offset_bottom = 229.0
+theme_override_font_sizes/font_size = 64
+text = "SELECT LEVEL"
+
+[node name="level_1" type="Button" parent="." unique_id=157448076]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 255.0
+offset_right = 604.0
+offset_bottom = 308.0
+theme_override_font_sizes/font_size = 32
+text = "Level 1"
+
+[node name="level_2" type="Button" parent="." unique_id=374197836]
+layout_mode = 0
+offset_left = 489.0
+offset_top = 358.0
+offset_right = 604.0
+offset_bottom = 411.0
+theme_override_font_sizes/font_size = 32
+text = "Level 2"
+
+[node name="Back" type="Button" parent="." unique_id=200766796]
+layout_mode = 0
+offset_left = 497.0
+offset_top = 446.0
+offset_right = 579.0
+offset_bottom = 499.0
+theme_override_font_sizes/font_size = 32
+text = "Back"
+
+[connection signal="pressed" from="level_1" to="." method="_on_level1_pressed"]
+[connection signal="pressed" from="level_2" to="." method="_on_level2_pressed"]
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]

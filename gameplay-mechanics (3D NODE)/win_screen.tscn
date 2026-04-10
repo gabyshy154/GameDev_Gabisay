@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://c8i7il8piahgm"]
+
+[ext_resource type="Script" uid="uid://bsvmp21cua7hl" path="res://win_screen.gd" id="1_l2arl"]
+
+[node name="WinScreen" type="Control" unique_id=1478939623]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l2arl")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2134506732]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.3254902, 0.09411765, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=516563454]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="." unique_id=227204992]
+layout_mode = 0
+offset_left = 339.0
+offset_top = 141.0
+offset_right = 755.0
+offset_bottom = 229.0
+theme_override_font_sizes/font_size = 64
+text = "YOU ESCAPED!"
+
+[node name="NextButton" type="Button" parent="." unique_id=1232645595]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 286.0
+offset_right = 663.0
+offset_bottom = 339.0
+theme_override_font_sizes/font_size = 32
+text = "NEXT LEVEL"
+
+[node name="LobbyButton" type="Button" parent="." unique_id=364010607]
+layout_mode = 0
+offset_left = 518.0
+offset_top = 406.0
+offset_right = 630.0
+offset_bottom = 459.0
+theme_override_font_sizes/font_size = 32
+text = "LOBBY"
+
+[connection signal="pressed" from="NextButton" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="LobbyButton" to="." method="_on_lobby_pressed"]

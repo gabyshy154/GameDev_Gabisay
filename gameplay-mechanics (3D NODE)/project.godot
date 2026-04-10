@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="Gameplay Mechanics"
-run/main_scene="uid://ij72l2idljn3"
+run/main_scene="uid://brg0cayojetal"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameState="*uid://dam1522ia7cta"
+
+[filesystem]
+
+import/blender/enabled=false
 
 [input]
 

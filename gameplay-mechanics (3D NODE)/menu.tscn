@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://brg0cayojetal"]
+
+[ext_resource type="Script" uid="uid://bo55alo52d8im" path="res://menu.gd" id="1_lti8b"]
+
+[node name="Menu" type="Control" unique_id=977195295]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lti8b")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=851402169]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.050980393, 0.050980393, 0.101960786, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=783694554]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Label" type="Label" parent="." unique_id=1437343684]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 146.0
+offset_right = 881.0
+offset_bottom = 245.0
+theme_override_font_sizes/font_size = 64
+text = "RUNGEON "
+horizontal_alignment = 1
+
+[node name="PlayButton" type="Button" parent="." unique_id=644397263]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 260.0
+offset_right = 611.0
+offset_bottom = 313.0
+theme_override_font_sizes/font_size = 32
+text = "PLAY"
+
+[node name="QuitButton" type="Button" parent="." unique_id=1247974614]
+layout_mode = 0
+offset_left = 529.0
+offset_top = 366.0
+offset_right = 614.0
+offset_bottom = 419.0
+theme_override_font_sizes/font_size = 32
+text = "QUIT"
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_quit_pressed"]

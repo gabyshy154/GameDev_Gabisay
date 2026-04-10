@@ -12,9 +12,8 @@ extends CharacterBody3D
 @export var tilt_upper_limit := PI / 3.0
 @export var tilt_lower_limit := -PI / 8.0
 
-# Respawn settings
 const FALL_LIMIT = -10.0
-var spawn_position = Vector3.ZERO
+var spawn_position := Vector3.ZERO
 
 var _gravity := -30.0
 var _camera_input_direction := Vector2.ZERO
@@ -27,14 +26,6 @@ var _was_on_floor_last_frame := true
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-
-	var spawn_point = get_tree().get_first_node_in_group("spawn_point")
-	if spawn_point:
-		spawn_position = spawn_point.global_position
-	else:
-		spawn_position = global_position
-
-	global_position = spawn_position
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -52,13 +43,13 @@ func _unhandled_input(event: InputEvent) -> void:
 		_camera_input_direction.y = -event.relative.y * mouse_sensitivity
 
 func _physics_process(delta: float) -> void:
-	# 1. Rotate camera pivot with mouse
+	# Camera rotation
 	_camera_pivot.rotation.x += _camera_input_direction.y * delta
 	_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, tilt_lower_limit, tilt_upper_limit)
 	_camera_pivot.rotation.y += _camera_input_direction.x * delta
 	_camera_input_direction = Vector2.ZERO
 
-	# 2. Calculate movement direction relative to camera
+	# Movement direction
 	var raw_input := Input.get_vector("move_left", "move_right", "move_forward", "move_backward", 0.4)
 	var forward := _camera.global_basis.z
 	var right := _camera.global_basis.x
@@ -66,45 +57,47 @@ func _physics_process(delta: float) -> void:
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
 
-	# 3. Rotate skin smoothly toward movement direction
+	# Rotation
 	if move_direction.length() > 0.2:
 		_last_input_direction = move_direction.normalized()
+
 	var target_angle := Vector3.BACK.signed_angle_to(_last_input_direction, Vector3.UP)
 	_skin.global_rotation.y = lerp_angle(_skin.rotation.y, target_angle, rotation_speed * delta)
 
-	# 4. Apply movement with acceleration
+	# Movement physics
 	var y_velocity := velocity.y
 	velocity.y = 0.0
 	velocity = velocity.move_toward(move_direction * move_speed, acceleration * delta)
+
 	if is_equal_approx(move_direction.length_squared(), 0.0) and velocity.length_squared() < stopping_speed:
 		velocity = Vector3.ZERO
+
 	velocity.y = y_velocity + _gravity * delta
 
-	# 5. Jump
-	var is_just_jumping := Input.is_action_just_pressed("ui_accept") and is_on_floor()
-	if is_just_jumping:
+	# Jump
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y += jump_impulse
-		_skin.jump()  # ← play jump animation
+		_skin.jump()
 
-	# 6. Play animations based on state
+	# Animations
 	var ground_speed := Vector2(velocity.x, velocity.z).length()
 
 	if not is_on_floor() and velocity.y < 0:
-		_skin.fall()               # ← falling animation
+		_skin.fall()
 	elif is_on_floor():
 		if ground_speed > stopping_speed:
-			_skin.move()           # ← run animation
+			_skin.move()
 		else:
-			_skin.idle()           # ← idle animation
+			_skin.idle()
 
 	_was_on_floor_last_frame = is_on_floor()
 	move_and_slide()
 
-	# 7. Fall detection → respawn
+	# Respawn
 	if global_position.y < FALL_LIMIT:
 		respawn()
 
 func respawn() -> void:
 	velocity = Vector3.ZERO
 	global_position = spawn_position
-	_skin.idle()  # ← reset to idle on respawn
+	_skin.idle()
